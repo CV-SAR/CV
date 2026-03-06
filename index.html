@@ -18,13 +18,11 @@
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.70);
 
-      /* ألوان عامة */
       --btnBlue1:#2f86ff;
       --btnBlue2:#00d1ff;
       --good:#29d17d;
       --danger:#ff3b3b;
 
-      /* زر فتح المواقع (جذاب) */
       --siteBtn1:#ffb300;
       --siteBtn2:#ff6a00;
 
@@ -123,7 +121,6 @@
 
     .cta{display:grid; gap:10px; margin-top:14px}
 
-    /* زر افتراضي: أزرق */
     .btn{
       display:flex; align-items:center; justify-content:center; gap:10px;
       padding:12px 14px;
@@ -137,7 +134,6 @@
     }
     .btn:hover{transform: translateY(-1px); filter: brightness(1.05)}
 
-    /* زر بهانس الأخضر */
     .btn.behance{
       background: linear-gradient(135deg, rgba(41,209,125,.95), rgba(0,209,255,.45));
       color:#071319;
@@ -157,7 +153,6 @@
       gap:2px;
     }
 
-    /* زر أحمر لفيديو الجهاز */
     .btn.danger{
       background: linear-gradient(135deg, rgba(255,59,59,.95), rgba(255,120,120,.55));
       color:#140707;
@@ -188,7 +183,6 @@
       font-weight:900;
     }
 
-    /* ===== نبذة سريعة (نفس شكل الصورة) ===== */
     .quickHeader{
       display:flex;
       align-items:flex-start;
@@ -248,7 +242,6 @@
       font-weight:900;
     }
 
-    /* ===== خبرات عملية (نفس شكل الصورة) ===== */
     .expGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -310,7 +303,6 @@
       font-weight:650;
     }
 
-    /* ألوان مختلفة لكل خانة */
     .c1{
       background:
         radial-gradient(700px 260px at 10% 0%, rgba(0,209,255,.16), transparent 60%),
@@ -343,7 +335,119 @@
     }
     .c4::after{ background: rgba(41,209,125,.85); }
 
-    /* كروت المواقع */
+    /* المهارات الأساسية */
+    .skillsGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .skillsGrid{grid-template-columns:1fr}
+    }
+
+    .skillCard{
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+      transition:.22s ease;
+      min-height:170px;
+    }
+    .skillCard:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 24px 70px rgba(0,0,0,.50);
+    }
+    .skillCard::after{
+      content:"";
+      position:absolute;
+      inset:-60px -60px auto auto;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      filter: blur(30px);
+      opacity:.32;
+      pointer-events:none;
+    }
+
+    .skillTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .skillName{
+      margin:0;
+      font-size:16px;
+      font-weight:1000;
+      color:rgba(255,255,255,.95);
+    }
+    .skillLevel{
+      color: rgba(255,255,255,.72);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .skillBarWrap{
+      width:100%;
+      height:12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      margin-bottom:14px;
+    }
+    .skillBar{
+      height:100%;
+      border-radius:999px;
+      background: linear-gradient(90deg, #7c5cff, #22d3ee);
+      box-shadow: 0 0 18px rgba(71, 168, 255, .22);
+    }
+    .skillText{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:2;
+      font-size:14px;
+      font-weight:650;
+    }
+
+    .s1{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(0,209,255,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(47,134,255,.12), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s1::after{ background: rgba(0,209,255,.85); }
+
+    .s2{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(124,92,255,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s2::after{ background: rgba(124,92,255,.85); }
+
+    .s3{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(255,179,0,.12), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(124,92,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s3::after{ background: rgba(255,179,0,.75); }
+
+    .s4{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(41,209,125,.12), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s4::after{ background: rgba(41,209,125,.75); }
+
     .projects{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -420,7 +524,6 @@
     </div>
 
     <div class="grid">
-      <!-- LEFT -->
       <aside class="card left">
         <a class="avatar" href="https://b.top4top.io/p_37154ic9c1.png" target="_blank" rel="noopener">
           <img src="https://b.top4top.io/p_37154ic9c1.png" alt="صورة محمد" />
@@ -479,10 +582,8 @@
         </div>
       </aside>
 
-      <!-- RIGHT -->
       <main class="card right">
 
-        <!-- ✅ نبذة سريعة (نفس الصورة) -->
         <section class="section">
           <div class="quickHeader">
             <h3 class="quickTitle">نبذة سريعة</h3>
@@ -502,7 +603,6 @@
           </div>
         </section>
 
-        <!-- ✅ الخبرات العملية (نفس شكل الصورة + ألوان) -->
         <section class="section">
           <h2>الخبرات العملية</h2>
 
@@ -581,17 +681,74 @@
           </div>
         </section>
 
-        <!-- تصوير المنتجات -->
+        <section class="section">
+          <h2>المهارات الأساسية</h2>
+
+          <div class="skillsGrid">
+            <div class="skillCard s1">
+              <div class="skillTop">
+                <h4 class="skillName">Photoshop</h4>
+                <div class="skillLevel">متقدم</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:92%"></div>
+              </div>
+              <p class="skillText">
+                تحسين صور منتجات، دمج واقعي، موكاب، تجهيز مواد إعلانية.
+              </p>
+            </div>
+
+            <div class="skillCard s2">
+              <div class="skillTop">
+                <h4 class="skillName">Premiere Pro</h4>
+                <div class="skillLevel">متقدم</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:88%"></div>
+              </div>
+              <p class="skillText">
+                مونتاج إعلانات وريلز، إيقاع سريع، تسليم سوشيال.
+              </p>
+            </div>
+
+            <div class="skillCard s3">
+              <div class="skillTop">
+                <h4 class="skillName">WordPress + HTML/CSS</h4>
+                <div class="skillLevel">جيد جدًا</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:82%"></div>
+              </div>
+              <p class="skillText">
+                بناء صفحات ومواقع، تخصيص قوالب، تطوير واجهات بسيطة وعملية.
+              </p>
+            </div>
+
+            <div class="skillCard s4">
+              <div class="skillTop">
+                <h4 class="skillName">After Effects</h4>
+                <div class="skillLevel">جيد جدًا</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:80%"></div>
+              </div>
+              <p class="skillText">
+                موشن نظيف، تايبوجرافي، انتقالات احترافية.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section class="section">
           <h2>تصوير المنتجات — الجهاز والسيستم ونتائج الشغل</h2>
           <p class="quickText" style="max-width:none; margin-bottom:12px">
-            خبرة عملية في تصوير المنتجات (خصوصًا النظارات) باستخدام إعدادات وإضاءة ثابتة، ثم تطوير الصورة على الفوتوشب لتخرج بجودة متجر عالمي.
+            خبرة عملية في تصوير المنتجات خصوصًا النظارات باستخدام إعدادات وإضاءة ثابتة ثم تطوير الصورة على الفوتوشوب لتخرج بجودة متجر عالمي.
           </p>
 
           <div class="expCard c1" style="min-height:auto">
             <div class="badges" style="margin-top:0">
               <a class="btn danger" style="display:inline-flex" href="https://www.youtube.com/watch?v=9ZG8Rs8fBe8" target="_blank" rel="noopener">
-                فيديو جهاز التصوير (YouTube)
+                فيديو جهاز التصوير
               </a>
               <a class="btn" style="display:inline-flex" href="https://b.top4top.io/p_3716obwgb1.png" target="_blank" rel="noopener">
                 صورة السيستم 1
@@ -603,17 +760,16 @@
                 المنتج بعد التصوير والتعديل
               </a>
               <a class="btn" style="display:inline-flex" href="https://i.top4top.io/p_3716ptcce1.jpg" target="_blank" rel="noopener">
-                المنتج (زاوية أخرى)
+                المنتج زاوية أخرى
               </a>
             </div>
 
             <p class="expText" style="margin-top:12px">
-              متمرس في كاميرات <b>Canon</b> وضبط الإضاءة والانعكاسات وتجهيز صورة منتج نظيفة وواضحة — لأن الصورة القوية بتختصر الكلام وبتساعد العميل يقرر بسرعة.
+              متمرس في كاميرات <b>Canon</b> وضبط الإضاءة والانعكاسات وتجهيز صورة منتج نظيفة وواضحة لأن الصورة القوية بتختصر الكلام وبتساعد العميل يقرر بسرعة.
             </p>
           </div>
         </section>
 
-        <!-- فيديوهات AI -->
         <section class="section">
           <h2>فيديوهات مصنوعة بالذكاء الاصطناعي</h2>
           <p class="quickText" style="max-width:none; margin-bottom:12px">دي عينة من الفيديوهات من مكتبة فيديوهات كثيرة.</p>
@@ -632,11 +788,10 @@
           </div>
         </section>
 
-        <!-- المواقع -->
         <section class="section">
           <h2>المواقع التي عملت عليها (روابط مباشرة)</h2>
           <p class="quickText" style="max-width:none; margin-bottom:12px">
-            نماذج لمواقع ومتاجر اشتغلت عليها أو ساهمت في تطوير المحتوى/الواجهة/التجهيز البصري:
+            نماذج لمواقع ومتاجر اشتغلت عليها أو ساهمت في تطوير المحتوى والواجهة والتجهيز البصري.
           </p>
 
           <div class="projects">
@@ -650,7 +805,7 @@
 
             <div class="siteCard">
               <div class="projTop">
-                <h4 style="margin:0; font-weight:1000">LINAS (عدسات ليناس)</h4>
+                <h4 style="margin:0; font-weight:1000">LINAS عدسات ليناس</h4>
                 <a class="siteOpen" href="https://linas.sa/" target="_blank" rel="noopener">فتح الموقع</a>
               </div>
               <div class="badges"><span class="badge">Lenses</span><span class="badge">Content</span></div>
@@ -682,7 +837,7 @@
 
             <div class="siteCard">
               <div class="projTop">
-                <h4 style="margin:0; font-weight:1000">عود البركة (بخور)</h4>
+                <h4 style="margin:0; font-weight:1000">عود البركة</h4>
                 <a class="siteOpen" href="https://oudalbarakah.com/" target="_blank" rel="noopener">فتح الموقع</a>
               </div>
               <div class="badges"><span class="badge">E-commerce</span><span class="badge">Products</span></div>
@@ -714,7 +869,7 @@
 
             <div class="siteCard">
               <div class="projTop">
-                <h4 style="margin:0; font-weight:1000">ملاهي Youpi (2016)</h4>
+                <h4 style="margin:0; font-weight:1000">ملاهي Youpi</h4>
                 <a class="siteOpen" href="https://www.youpiiii.com/#" target="_blank" rel="noopener">فتح الموقع</a>
               </div>
               <div class="badges"><span class="badge">2016</span><span class="badge">Website</span></div>
@@ -724,7 +879,7 @@
 
         <footer>
           © <span id="y"></span> — محمد محمد عبدالغني
-          <div class="ownerNote">ملاحظة: صفحة السيرة الذاتية دي مبرمجة ومصممة بيدي (HTML/CSS) كعرض عملي لطريقة شغلي.</div>
+          <div class="ownerNote">صفحة السيرة الذاتية دي مبرمجة ومصممة بيدي HTML CSS كعرض عملي لطريقة شغلي.</div>
         </footer>
       </main>
     </div>
