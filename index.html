@@ -28,9 +28,13 @@
 
       --shadow: 0 20px 60px rgba(0,0,0,.45);
       --radius: 22px;
+      --ease: cubic-bezier(.22,1,.36,1);
     }
 
     *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+    }
     html,body{height:100%}
     body{
       margin:0;
@@ -41,10 +45,32 @@
         radial-gradient(900px 500px at 60% 95%, rgba(41,209,125,.14), transparent 60%),
         var(--bg);
       color: var(--text);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(500px 300px at 20% 15%, rgba(255,255,255,.035), transparent 70%),
+        radial-gradient(500px 300px at 80% 85%, rgba(255,255,255,.025), transparent 70%);
+      mix-blend-mode:screen;
+      opacity:.9;
+      z-index:0;
+      transform: translateY(var(--bgShift, 0px));
+      transition: transform .15s linear;
     }
 
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:1120px; margin:0 auto; padding:28px 18px 44px}
+    .wrap{
+      max-width:1120px;
+      margin:0 auto;
+      padding:28px 18px 44px;
+      position:relative;
+      z-index:1;
+    }
 
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
@@ -54,7 +80,8 @@
     .dot{
       width:14px; height:14px; border-radius:50%;
       background: linear-gradient(135deg, var(--btnBlue1), var(--btnBlue2));
-      box-shadow: 0 0 0 6px rgba(47,134,255,.10);
+      box-shadow: 0 0 0 6px rgba(47,134,255,.10), 0 0 30px rgba(0,209,255,.35);
+      animation: pulseDot 2.7s infinite ease-in-out;
     }
     .brand h1{margin:0; font-size:16px; letter-spacing:.2px}
     .pill{
@@ -65,13 +92,24 @@
       backdrop-filter: blur(10px);
       white-space:nowrap;
       font-weight:700;
+      transition: transform .35s var(--ease), border-color .35s ease, background .35s ease;
     }
-    .goodDot{width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block}
+    .pill:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.07);
+    }
+    .goodDot{
+      width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block;
+      box-shadow:0 0 12px rgba(41,209,125,.8);
+      animation: blinkGood 1.8s infinite ease-in-out;
+    }
 
     .grid{
       display:grid;
       grid-template-columns: 320px 1fr;
       gap:18px;
+      align-items:start;
     }
     @media (max-width: 900px){
       .grid{grid-template-columns:1fr}
@@ -83,15 +121,18 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
+      transition: transform .4s var(--ease), border-color .4s ease, box-shadow .4s ease;
     }
 
     .left{
       padding:18px;
       position:sticky; top:18px;
       height: fit-content;
+      transform: translateY(var(--leftParallax, 0px));
+      will-change: transform;
     }
     @media (max-width: 900px){
-      .left{position:relative; top:auto}
+      .left{position:relative; top:auto; transform:none !important;}
     }
 
     .avatar{
@@ -102,8 +143,36 @@
       background: rgba(255,255,255,.03);
       overflow:hidden;
       display:block;
+      position:relative;
+      isolation:isolate;
+      transition: transform .45s var(--ease), box-shadow .45s ease, border-color .45s ease;
     }
-    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+    .avatar::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.20) 50%, transparent 65%);
+      transform: translateX(-120%) rotate(12deg);
+      transition: transform 1s var(--ease);
+      z-index:2;
+      pointer-events:none;
+    }
+    .avatar:hover::before{
+      transform: translateX(120%) rotate(12deg);
+    }
+    .avatar:hover{
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 24px 60px rgba(0,0,0,.45);
+      border-color: rgba(255,255,255,.22);
+    }
+    .avatar img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      transform: scale(1.02);
+      transition: transform .7s var(--ease);
+    }
+    .avatar:hover img{
+      transform: scale(1.06);
+    }
 
     .name{margin:14px 0 4px; font-size:26px; font-weight:900; letter-spacing:.2px}
     .role{margin:0 0 10px; color: var(--muted); font-weight:600; line-height:1.9}
@@ -117,6 +186,13 @@
       background: rgba(255,255,255,.03);
       color: rgba(255,255,255,.84);
       font-weight:800;
+      transition: transform .3s var(--ease), border-color .3s ease, background .3s ease;
+      will-change: transform;
+    }
+    .tag:hover{
+      transform: translateY(-3px) scale(1.04);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.07);
     }
 
     .cta{display:grid; gap:10px; margin-top:14px}
@@ -127,12 +203,35 @@
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.14);
       background: linear-gradient(135deg, rgba(47,134,255,.92), rgba(0,209,255,.55));
-      transition: .2s ease;
+      transition: transform .32s var(--ease), filter .32s ease, box-shadow .32s ease, border-color .32s ease;
       font-weight:900;
       text-align:center;
       color:#081022;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 12px 26px rgba(0,0,0,.18);
+      will-change: transform;
     }
-    .btn:hover{transform: translateY(-1px); filter: brightness(1.05)}
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.22) 48%, transparent 78%);
+      transform: translateX(-120%);
+      transition: transform .85s var(--ease);
+    }
+    .btn:hover::before{
+      transform: translateX(120%);
+    }
+    .btn:hover{
+      transform: translateY(-3px) scale(1.01);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 34px rgba(0,0,0,.26);
+      border-color: rgba(255,255,255,.22);
+    }
+    .btn:active{
+      transform: translateY(-1px) scale(.995);
+    }
 
     .btn.behance{
       background: linear-gradient(135deg, rgba(41,209,125,.95), rgba(0,209,255,.45));
@@ -168,12 +267,24 @@
       color: rgba(255,255,255,.82);
       font-size:14px;
       gap:10px;
+      transition: transform .35s var(--ease), border-color .35s ease, background .35s ease;
+      will-change: transform;
+    }
+    .linkRow:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.20);
+      background: rgba(255,255,255,.06);
     }
     .linkRow b{font-weight:900}
     .linkRow span{color: rgba(255,255,255,.55); font-weight:800; white-space:nowrap}
 
     .right{padding:18px}
-    .section{padding:16px; border-radius: 18px}
+    .section{
+      padding:16px;
+      border-radius: 18px;
+      position:relative;
+      transition: transform .45s var(--ease), background .45s ease, border-color .45s ease;
+    }
     .section + .section{margin-top:14px}
     .section h2{
       margin:0 0 10px;
@@ -205,6 +316,12 @@
       border-radius:999px;
       font-weight:900;
       backdrop-filter: blur(10px);
+      transition: transform .35s var(--ease), border-color .35s ease, background .35s ease;
+    }
+    .updatePill:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.07);
     }
     .quickText{
       margin:0;
@@ -229,6 +346,13 @@
       border:1px solid var(--stroke);
       border-radius:16px;
       background: rgba(255,255,255,.03);
+      transition: transform .35s var(--ease), border-color .35s ease, background .35s ease;
+      will-change: transform;
+    }
+    .kpi:hover{
+      transform: translateY(-4px) scale(1.015);
+      border-color: rgba(255,255,255,.20);
+      background: rgba(255,255,255,.06);
     }
     .kpi b{display:block; font-size:18px; font-weight:1000}
     .kpi span{color: rgba(255,255,255,.58); font-size:13px; font-weight:800}
@@ -240,6 +364,12 @@
       background: rgba(255,255,255,.03);
       color: rgba(255,255,255,.85);
       font-weight:900;
+      transition: transform .3s var(--ease), border-color .3s ease, background .3s ease;
+    }
+    .badge:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.20);
+      background: rgba(255,255,255,.07);
     }
 
     .expGrid{
@@ -259,11 +389,12 @@
       box-shadow: 0 18px 55px rgba(0,0,0,.35);
       position:relative;
       overflow:hidden;
-      transition: .22s ease;
+      transition: transform .32s var(--ease), border-color .32s ease, box-shadow .32s ease;
       min-height: 190px;
+      will-change: transform;
     }
     .expCard:hover{
-      transform: translateY(-2px);
+      transform: translateY(-4px) scale(1.01);
       border-color: rgba(255,255,255,.18);
       box-shadow: 0 24px 70px rgba(0,0,0,.50);
     }
@@ -277,6 +408,11 @@
       filter: blur(30px);
       opacity:.35;
       pointer-events:none;
+      transition: transform .7s var(--ease), opacity .5s ease;
+    }
+    .expCard:hover::after{
+      transform: scale(1.08) translate(-8px, 8px);
+      opacity:.48;
     }
 
     .expTitle{
@@ -335,7 +471,6 @@
     }
     .c4::after{ background: rgba(41,209,125,.85); }
 
-    /* المهارات الأساسية */
     .skillsGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -353,11 +488,12 @@
       box-shadow: 0 18px 55px rgba(0,0,0,.35);
       position:relative;
       overflow:hidden;
-      transition:.22s ease;
+      transition: transform .32s var(--ease), border-color .32s ease, box-shadow .32s ease;
       min-height:170px;
+      will-change: transform;
     }
     .skillCard:hover{
-      transform: translateY(-2px);
+      transform: translateY(-4px) scale(1.01);
       border-color: rgba(255,255,255,.18);
       box-shadow: 0 24px 70px rgba(0,0,0,.50);
     }
@@ -371,6 +507,11 @@
       filter: blur(30px);
       opacity:.32;
       pointer-events:none;
+      transition: transform .7s var(--ease), opacity .5s ease;
+    }
+    .skillCard:hover::after{
+      transform: scale(1.08) translate(-8px, 8px);
+      opacity:.44;
     }
 
     .skillTop{
@@ -401,12 +542,24 @@
       background: rgba(255,255,255,.03);
       overflow:hidden;
       margin-bottom:14px;
+      position:relative;
     }
     .skillBar{
       height:100%;
       border-radius:999px;
       background: linear-gradient(90deg, #7c5cff, #22d3ee);
       box-shadow: 0 0 18px rgba(71, 168, 255, .22);
+      position:relative;
+      overflow:hidden;
+      transform-origin:right center;
+    }
+    .skillBar::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.28) 50%, transparent 80%);
+      transform: translateX(-120%);
+      animation: shimmerBar 3s infinite ease-in-out;
     }
     .skillText{
       margin:0;
@@ -463,12 +616,13 @@
         radial-gradient(700px 240px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
         rgba(255,255,255,.03);
       box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      transition: .22s ease;
+      transition: transform .32s var(--ease), box-shadow .32s ease, border-color .32s ease;
       padding:14px;
       border-radius:16px;
+      will-change: transform;
     }
     .siteCard:hover{
-      transform: translateY(-2px);
+      transform: translateY(-4px) scale(1.01);
       box-shadow: 0 22px 60px rgba(0,0,0,.48);
       border-color: rgba(255,180,30,.26);
     }
@@ -486,12 +640,26 @@
       border:1px solid rgba(255,255,255,.18);
       background: linear-gradient(135deg, rgba(255,179,0,.95), rgba(255,106,0,.65));
       box-shadow: 0 10px 28px rgba(255,140,0,.18);
-      transition:.2s ease;
+      transition: transform .28s var(--ease), filter .28s ease, box-shadow .28s ease;
       white-space:nowrap;
+      position:relative;
+      overflow:hidden;
+    }
+    .siteOpen::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.24) 48%, transparent 78%);
+      transform: translateX(-120%);
+      transition: transform .85s var(--ease);
+    }
+    .siteOpen:hover::before{
+      transform: translateX(120%);
     }
     .siteOpen:hover{
       filter: brightness(1.06);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(255,140,0,.28);
     }
 
     footer{
@@ -507,42 +675,144 @@
       color: rgba(255,255,255,.70);
       font-weight:700;
     }
+
+    /* =========================
+       SCROLL / ENTRY ANIMATIONS
+    ========================= */
+    [data-animate]{
+      opacity:0;
+      will-change: transform, opacity, filter;
+      transition:
+        opacity .9s var(--ease),
+        transform .9s var(--ease),
+        filter .9s var(--ease);
+      transition-delay: var(--delay, 0ms);
+      backface-visibility:hidden;
+    }
+
+    [data-animate="up"]{
+      transform: translateY(42px) scale(.98);
+      filter: blur(10px);
+    }
+    [data-animate="down"]{
+      transform: translateY(-42px) scale(.98);
+      filter: blur(10px);
+    }
+    [data-animate="right"]{
+      transform: translateX(-46px) scale(.985);
+      filter: blur(10px);
+    }
+    [data-animate="left"]{
+      transform: translateX(46px) scale(.985);
+      filter: blur(10px);
+    }
+    [data-animate="zoom"]{
+      transform: scale(.88);
+      filter: blur(10px);
+    }
+    [data-animate="rotate"]{
+      transform: translateY(30px) scale(.92) rotate(-4deg);
+      filter: blur(10px);
+    }
+
+    .in-view{
+      opacity:1 !important;
+      transform: none !important;
+      filter: blur(0) !important;
+    }
+
+    .floating-soft{
+      animation: floatingSoft 4.2s ease-in-out infinite;
+    }
+
+    .floating-soft-2{
+      animation: floatingSoft2 5.4s ease-in-out infinite;
+    }
+
+    .tilt-parallax{
+      transform: translate3d(var(--mx,0px), var(--my,0px), 0);
+      transition: transform .25s ease;
+    }
+
+    @keyframes floatingSoft{
+      0%,100%{ transform: translateY(0px); }
+      50%{ transform: translateY(-6px); }
+    }
+
+    @keyframes floatingSoft2{
+      0%,100%{ transform: translateY(0px) translateX(0px); }
+      50%{ transform: translateY(-7px) translateX(2px); }
+    }
+
+    @keyframes pulseDot{
+      0%,100%{ transform: scale(1); box-shadow: 0 0 0 6px rgba(47,134,255,.10), 0 0 26px rgba(0,209,255,.28); }
+      50%{ transform: scale(1.12); box-shadow: 0 0 0 10px rgba(47,134,255,.05), 0 0 32px rgba(0,209,255,.42); }
+    }
+
+    @keyframes blinkGood{
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.55; transform:scale(1.18); }
+    }
+
+    @keyframes shimmerBar{
+      0%{ transform: translateX(-120%); }
+      100%{ transform: translateX(120%); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *,
+      *::before,
+      *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+      }
+      [data-animate]{
+        opacity:1 !important;
+        transform:none !important;
+        filter:none !important;
+      }
+      body::before,
+      .left{
+        transform:none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">
+      <div class="brand" data-animate="right">
         <div class="dot"></div>
         <h1>السيرة الذاتية — محمد محمد عبدالغني</h1>
       </div>
-      <div class="pill">
+      <div class="pill floating-soft" data-animate="left">
         <span>متاح للعمل داخل السعودية</span>
         <span class="goodDot"></span>
       </div>
     </div>
 
     <div class="grid">
-      <aside class="card left">
-        <a class="avatar" href="https://b.top4top.io/p_37154ic9c1.png" target="_blank" rel="noopener">
+      <aside class="card left tilt-parallax" data-animate="right">
+        <a class="avatar" href="https://b.top4top.io/p_37154ic9c1.png" target="_blank" rel="noopener" data-animate="zoom">
           <img src="https://b.top4top.io/p_37154ic9c1.png" alt="صورة محمد" />
         </a>
 
-        <div class="name">محمد محمد عبدالغني</div>
-        <p class="role">
+        <div class="name" data-animate="up">محمد محمد عبدالغني</div>
+        <p class="role" data-animate="up">
           مصمم جرافيك + مونتير فيديوهات إعلانية + تطوير صفحات HTML/WordPress<br/>
           خبرة منذ <b>2016</b> (10 سنوات) — خبرة داخل السعودية: <b>4 سنوات</b><br/>
           تنفيذ كامل من الفكرة للتسليم النهائي: تصميم — مونتاج — تجهيز محتوى — إخراج بصري للمتجر والسوشيال.
         </p>
 
         <div class="meta">
-          <div class="tag">Branding</div>
-          <div class="tag">Ads & Reels</div>
-          <div class="tag">E-commerce</div>
-          <div class="tag">WordPress</div>
-          <div class="tag">HTML/CSS</div>
-          <div class="tag">Product Photography</div>
+          <div class="tag floating-soft">Branding</div>
+          <div class="tag floating-soft-2">Ads & Reels</div>
+          <div class="tag floating-soft">E-commerce</div>
+          <div class="tag floating-soft-2">WordPress</div>
+          <div class="tag floating-soft">HTML/CSS</div>
+          <div class="tag floating-soft-2">Product Photography</div>
         </div>
 
         <div class="cta">
@@ -582,32 +852,32 @@
         </div>
       </aside>
 
-      <main class="card right">
+      <main class="card right" data-animate="left">
 
-        <section class="section">
+        <section class="section" data-animate="up">
           <div class="quickHeader">
-            <h3 class="quickTitle">نبذة سريعة</h3>
-            <div class="updatePill">آخر تحديث: <b style="color:rgba(255,255,255,.92)">مارس 2026</b></div>
+            <h3 class="quickTitle" data-animate="up">نبذة سريعة</h3>
+            <div class="updatePill floating-soft-2" data-animate="left">آخر تحديث: <b style="color:rgba(255,255,255,.92)">مارس 2026</b></div>
           </div>
 
-          <p class="quickText">
+          <p class="quickText" data-animate="up">
             بدأت عملي في التصميم من سنة <b>2016</b>، واشتغلت على مجالات مختلفة: بصريات، متاجر إلكترونية، ألعاب وبطاقات رقمية،
             ومواد تسويق منتجات وخدمات داخل السعودية. أنا مسؤول عن التنفيذ الكامل في أغلب الأعمال: <b>من الفكرة → التصميم → المونتاج → تجهيز المحتوى → إخراج نسخة نهائية جاهزة للنشر</b>.
             ده بيخلّيني أضيف قيمة بسرعة لأي فريق عمل لأنّي “بنفّذ” بتركيز وجودة، مش مجرد تصميم وخلاص.
           </p>
 
           <div class="kpis">
-            <div class="kpi"><b>2016</b><span>بداية الخبرة</span></div>
-            <div class="kpi"><b>10</b><span>سنوات خبرة</span></div>
-            <div class="kpi"><b>4</b><span>سنوات داخل السعودية</span></div>
+            <div class="kpi" data-animate="up"><b>2016</b><span>بداية الخبرة</span></div>
+            <div class="kpi" data-animate="up"><b>10</b><span>سنوات خبرة</span></div>
+            <div class="kpi" data-animate="up"><b>4</b><span>سنوات داخل السعودية</span></div>
           </div>
         </section>
 
-        <section class="section">
-          <h2>الخبرات العملية</h2>
+        <section class="section" data-animate="up">
+          <h2 data-animate="up">الخبرات العملية</h2>
 
           <div class="expGrid">
-            <div class="expCard c2">
+            <div class="expCard c2 tilt-parallax" data-animate="right">
               <h4 class="expTitle">شركة بن مروت للمواد الغذائية — مكة</h4>
               <div class="expMeta">
                 <span>السعودية</span>
@@ -625,7 +895,7 @@
               </div>
             </div>
 
-            <div class="expCard c1">
+            <div class="expCard c1 tilt-parallax" data-animate="left">
               <h4 class="expTitle">عبادي استوري — متجر ألعاب وبطاقات رقمية</h4>
               <div class="expMeta">
                 <span>سنة</span>
@@ -643,7 +913,7 @@
               </div>
             </div>
 
-            <div class="expCard c3">
+            <div class="expCard c3 tilt-parallax" data-animate="right">
               <h4 class="expTitle">تطوير مواقع وصفحات — WordPress + HTML/CSS</h4>
               <div class="expMeta">
                 <span>خبرة عملية</span>
@@ -661,7 +931,7 @@
               </div>
             </div>
 
-            <div class="expCard c4">
+            <div class="expCard c4 tilt-parallax" data-animate="left">
               <h4 class="expTitle">ZIAR للبصريات — تصميم + مونتاج + محتوى منتجات</h4>
               <div class="expMeta">
                 <span>سنة</span>
@@ -681,56 +951,56 @@
           </div>
         </section>
 
-        <section class="section">
-          <h2>المهارات الأساسية</h2>
+        <section class="section" data-animate="up">
+          <h2 data-animate="up">المهارات الأساسية</h2>
 
           <div class="skillsGrid">
-            <div class="skillCard s1">
+            <div class="skillCard s1 tilt-parallax" data-animate="right">
               <div class="skillTop">
                 <h4 class="skillName">Photoshop</h4>
                 <div class="skillLevel">متقدم</div>
               </div>
               <div class="skillBarWrap">
-                <div class="skillBar" style="width:92%"></div>
+                <div class="skillBar" data-width="92%"></div>
               </div>
               <p class="skillText">
                 تحسين صور منتجات، دمج واقعي، موكاب، تجهيز مواد إعلانية.
               </p>
             </div>
 
-            <div class="skillCard s2">
+            <div class="skillCard s2 tilt-parallax" data-animate="left">
               <div class="skillTop">
                 <h4 class="skillName">Premiere Pro</h4>
                 <div class="skillLevel">متقدم</div>
               </div>
               <div class="skillBarWrap">
-                <div class="skillBar" style="width:88%"></div>
+                <div class="skillBar" data-width="88%"></div>
               </div>
               <p class="skillText">
                 مونتاج إعلانات وريلز، إيقاع سريع، تسليم سوشيال.
               </p>
             </div>
 
-            <div class="skillCard s3">
+            <div class="skillCard s3 tilt-parallax" data-animate="right">
               <div class="skillTop">
                 <h4 class="skillName">WordPress + HTML/CSS</h4>
                 <div class="skillLevel">جيد جدًا</div>
               </div>
               <div class="skillBarWrap">
-                <div class="skillBar" style="width:82%"></div>
+                <div class="skillBar" data-width="82%"></div>
               </div>
               <p class="skillText">
                 بناء صفحات ومواقع، تخصيص قوالب، تطوير واجهات بسيطة وعملية.
               </p>
             </div>
 
-            <div class="skillCard s4">
+            <div class="skillCard s4 tilt-parallax" data-animate="left">
               <div class="skillTop">
                 <h4 class="skillName">After Effects</h4>
                 <div class="skillLevel">جيد جدًا</div>
               </div>
               <div class="skillBarWrap">
-                <div class="skillBar" style="width:80%"></div>
+                <div class="skillBar" data-width="80%"></div>
               </div>
               <p class="skillText">
                 موشن نظيف، تايبوجرافي، انتقالات احترافية.
@@ -739,13 +1009,13 @@
           </div>
         </section>
 
-        <section class="section">
-          <h2>تصوير المنتجات — الجهاز والسيستم ونتائج الشغل</h2>
-          <p class="quickText" style="max-width:none; margin-bottom:12px">
+        <section class="section" data-animate="up">
+          <h2 data-animate="up">تصوير المنتجات — الجهاز والسيستم ونتائج الشغل</h2>
+          <p class="quickText" style="max-width:none; margin-bottom:12px" data-animate="up">
             خبرة عملية في تصوير المنتجات خصوصًا النظارات باستخدام إعدادات وإضاءة ثابتة ثم تطوير الصورة على الفوتوشوب لتخرج بجودة متجر عالمي.
           </p>
 
-          <div class="expCard c1" style="min-height:auto">
+          <div class="expCard c1 tilt-parallax" style="min-height:auto" data-animate="zoom">
             <div class="badges" style="margin-top:0">
               <a class="btn danger" style="display:inline-flex" href="https://www.youtube.com/watch?v=9ZG8Rs8fBe8" target="_blank" rel="noopener">
                 فيديو جهاز التصوير
@@ -770,11 +1040,11 @@
           </div>
         </section>
 
-        <section class="section">
-          <h2>فيديوهات مصنوعة بالذكاء الاصطناعي</h2>
-          <p class="quickText" style="max-width:none; margin-bottom:12px">دي عينة من الفيديوهات من مكتبة فيديوهات كثيرة.</p>
+        <section class="section" data-animate="up">
+          <h2 data-animate="up">فيديوهات مصنوعة بالذكاء الاصطناعي</h2>
+          <p class="quickText" style="max-width:none; margin-bottom:12px" data-animate="up">دي عينة من الفيديوهات من مكتبة فيديوهات كثيرة.</p>
 
-          <div class="expCard c3" style="min-height:auto">
+          <div class="expCard c3 tilt-parallax" style="min-height:auto" data-animate="zoom">
             <div class="badges" style="margin-top:0">
               <a class="btn" style="display:inline-flex" href="https://c.top4top.io/m_3716odn1t1.mp4" target="_blank" rel="noopener">فيديو 1</a>
               <a class="btn" style="display:inline-flex" href="https://d.top4top.io/m_3716l96wz1.mp4" target="_blank" rel="noopener">فيديو 2</a>
@@ -788,14 +1058,14 @@
           </div>
         </section>
 
-        <section class="section">
-          <h2>المواقع التي عملت عليها (روابط مباشرة)</h2>
-          <p class="quickText" style="max-width:none; margin-bottom:12px">
+        <section class="section" data-animate="up">
+          <h2 data-animate="up">المواقع التي عملت عليها (روابط مباشرة)</h2>
+          <p class="quickText" style="max-width:none; margin-bottom:12px" data-animate="up">
             نماذج لمواقع ومتاجر اشتغلت عليها أو ساهمت في تطوير المحتوى والواجهة والتجهيز البصري.
           </p>
 
           <div class="projects">
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="right">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">ZIAR للنظارات</h4>
                 <a class="siteOpen" href="https://ziar.sa/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -803,7 +1073,7 @@
               <div class="badges"><span class="badge">Optics</span><span class="badge">E-commerce</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="left">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">LINAS عدسات ليناس</h4>
                 <a class="siteOpen" href="https://linas.sa/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -811,7 +1081,7 @@
               <div class="badges"><span class="badge">Lenses</span><span class="badge">Content</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="right">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">Aliya للبصريات</h4>
                 <a class="siteOpen" href="https://aliya.sa/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -819,7 +1089,7 @@
               <div class="badges"><span class="badge">Optical</span><span class="badge">Store</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="left">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">Optique للبصريات</h4>
                 <a class="siteOpen" href="https://optique.sa/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -827,7 +1097,7 @@
               <div class="badges"><span class="badge">Optics</span><span class="badge">UI</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="right">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">حلول سهلة للسيارات</h4>
                 <a class="siteOpen" href="https://holol-sahla.com/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -835,7 +1105,7 @@
               <div class="badges"><span class="badge">Automotive</span><span class="badge">Marketing</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="left">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">عود البركة</h4>
                 <a class="siteOpen" href="https://oudalbarakah.com/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -843,7 +1113,7 @@
               <div class="badges"><span class="badge">E-commerce</span><span class="badge">Products</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="right">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">عبادي استوري</h4>
                 <a class="siteOpen" href="https://abadystore.com/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -851,7 +1121,7 @@
               <div class="badges"><span class="badge">Gaming</span><span class="badge">Store</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="left">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">فهد العروبة</h4>
                 <a class="siteOpen" href="https://fhd-alarwbh.com/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -859,7 +1129,7 @@
               <div class="badges"><span class="badge">Cards</span><span class="badge">Digital</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="right">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">الفهد</h4>
                 <a class="siteOpen" href="https://al-fahdd.com/" target="_blank" rel="noopener">فتح الموقع</a>
@@ -867,7 +1137,7 @@
               <div class="badges"><span class="badge">Gaming</span><span class="badge">E-commerce</span></div>
             </div>
 
-            <div class="siteCard">
+            <div class="siteCard tilt-parallax" data-animate="left">
               <div class="projTop">
                 <h4 style="margin:0; font-weight:1000">ملاهي Youpi</h4>
                 <a class="siteOpen" href="https://www.youpiiii.com/#" target="_blank" rel="noopener">فتح الموقع</a>
@@ -877,7 +1147,7 @@
           </div>
         </section>
 
-        <footer>
+        <footer data-animate="up">
           © <span id="y"></span> — محمد محمد عبدالغني
           <div class="ownerNote">صفحة السيرة الذاتية دي مبرمجة ومصممة بيدي HTML CSS كعرض عملي لطريقة شغلي.</div>
         </footer>
@@ -887,6 +1157,125 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // توزيع delays تلقائي للعناصر
+    const groups = [
+      '.meta .tag',
+      '.cta .btn',
+      '.links .linkRow',
+      '.kpis .kpi',
+      '.expGrid .expCard',
+      '.skillsGrid .skillCard',
+      '.projects .siteCard',
+      '.badges .badge',
+      '.expCard .btn',
+      '.siteCard .badge'
+    ];
+
+    groups.forEach(selector => {
+      const items = document.querySelectorAll(selector);
+      items.forEach((el, i) => {
+        if (!el.hasAttribute('data-animate')) {
+          el.setAttribute('data-animate', i % 2 === 0 ? 'up' : 'zoom');
+        }
+        el.style.setProperty('--delay', `${i * 70}ms`);
+      });
+    });
+
+    // تأخير بسيط لعناصر مستقلة
+    document.querySelectorAll('[data-animate]').forEach((el, i) => {
+      if (!el.style.getPropertyValue('--delay')) {
+        el.style.setProperty('--delay', `${Math.min(i * 35, 280)}ms`);
+      }
+    });
+
+    // أنيميشن scroll يظهر ويختفي كل مرة عند الدخول والخروج
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+
+          // أنيميشن شريط المهارات عند الظهور
+          if (entry.target.classList.contains('skillCard')) {
+            const bar = entry.target.querySelector('.skillBar');
+            if (bar) {
+              const width = bar.dataset.width || '0%';
+              bar.style.width = width;
+              bar.style.transition = 'width 1.2s cubic-bezier(.22,1,.36,1) .15s';
+            }
+          }
+        } else {
+          entry.target.classList.remove('in-view');
+
+          // رجوع شريط المهارات للصفر عند الخروج عشان يعيد الأنيميشن عند الرجوع
+          if (entry.target.classList.contains('skillCard')) {
+            const bar = entry.target.querySelector('.skillBar');
+            if (bar) {
+              bar.style.width = '0%';
+              bar.style.transition = 'width .35s ease';
+            }
+          }
+        }
+      });
+    }, {
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // تجهيز أولي لأشرطة المهارات
+    document.querySelectorAll('.skillBar').forEach(bar => {
+      bar.style.width = '0%';
+    });
+
+    // Parallax خفيف أثناء السكرول
+    const leftCard = document.querySelector('.left');
+    let ticking = false;
+
+    function updateScrollEffects() {
+      const y = window.scrollY || window.pageYOffset;
+      document.body.style.setProperty('--bgShift', `${y * -0.04}px`);
+
+      if (leftCard && window.innerWidth > 900) {
+        leftCard.style.setProperty('--leftParallax', `${Math.min(y * 0.04, 18)}px`);
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollEffects);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateScrollEffects();
+
+    // Tilt/parallax بسيط للكروت على الديسكتوب
+    const tiltItems = document.querySelectorAll('.tilt-parallax');
+
+    tiltItems.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 900) return;
+
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+
+        const moveX = (px - 0.5) * -10;
+        const moveY = (py - 0.5) * -10;
+
+        card.style.setProperty('--mx', `${moveX}px`);
+        card.style.setProperty('--my', `${moveY}px`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--mx', '0px');
+        card.style.setProperty('--my', '0px');
+      });
+    });
   </script>
 </body>
 </html>
