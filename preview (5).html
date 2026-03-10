@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>محمد محمد عبدالغني | السيرة الذاتية</title>
+  <meta name="description" content="السيرة الذاتية — محمد محمد عبدالغني — مصمم جرافيك ومونتير فيديوهات إعلانية بخبرة منذ 2016، وخبرة داخل السعودية 4 سنوات." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+
+      --btnBlue1:#2f86ff;
+      --btnBlue2:#00d1ff;
+      --good:#29d17d;
+      --danger:#ff3b3b;
+
+      --siteBtn1:#ffb300;
+      --siteBtn2:#ff6a00;
+
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Tajawal", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(47,134,255,.25), transparent 55%),
+        radial-gradient(900px 500px at 85% 20%, rgba(0,209,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 60% 95%, rgba(41,209,125,.14), transparent 60%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1120px; margin:0 auto; padding:28px 18px 44px}
+
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom:18px; flex-wrap:wrap;
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .dot{
+      width:14px; height:14px; border-radius:50%;
+      background: linear-gradient(135deg, var(--btnBlue1), var(--btnBlue2));
+      box-shadow: 0 0 0 6px rgba(47,134,255,.10);
+    }
+    .brand h1{margin:0; font-size:16px; letter-spacing:.2px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border:1px solid var(--stroke);
+      border-radius:999px; background: rgba(255,255,255,.04);
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+      white-space:nowrap;
+      font-weight:700;
+    }
+    .goodDot{width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:18px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .left{
+      padding:18px;
+      position:sticky; top:18px;
+      height: fit-content;
+    }
+    @media (max-width: 900px){
+      .left{position:relative; top:auto}
+    }
+
+    .avatar{
+      width:100%;
+      aspect-ratio: 1/1;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      display:block;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+
+    .name{margin:14px 0 4px; font-size:26px; font-weight:900; letter-spacing:.2px}
+    .role{margin:0 0 10px; color: var(--muted); font-weight:600; line-height:1.9}
+
+    .meta{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 14px}
+    .tag{
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.84);
+      font-weight:800;
+    }
+
+    .cta{display:grid; gap:10px; margin-top:14px}
+
+    .btn{
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(47,134,255,.92), rgba(0,209,255,.55));
+      transition: .2s ease;
+      font-weight:900;
+      text-align:center;
+      color:#081022;
+    }
+    .btn:hover{transform: translateY(-1px); filter: brightness(1.05)}
+
+    .btn.behance{
+      background: linear-gradient(135deg, rgba(41,209,125,.95), rgba(0,209,255,.45));
+      color:#071319;
+    }
+    .btn.behance .small{
+      display:block;
+      font-size:12px;
+      font-weight:900;
+      opacity:.85;
+      margin-top:2px;
+      line-height:1.4;
+    }
+    .btn.behance .wrapTxt{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:2px;
+    }
+
+    .btn.danger{
+      background: linear-gradient(135deg, rgba(255,59,59,.95), rgba(255,120,120,.55));
+      color:#140707;
+    }
+
+    .links{margin-top:14px; display:grid; gap:10px}
+    .linkRow{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.82);
+      font-size:14px;
+      gap:10px;
+    }
+    .linkRow b{font-weight:900}
+    .linkRow span{color: rgba(255,255,255,.55); font-weight:800; white-space:nowrap}
+
+    .right{padding:18px}
+    .section{padding:16px; border-radius: 18px}
+    .section + .section{margin-top:14px}
+    .section h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color: rgba(255,255,255,.78);
+      font-weight:900;
+    }
+
+    .quickHeader{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
+    }
+    .quickTitle{
+      margin:0;
+      font-size:34px;
+      font-weight:1000;
+      letter-spacing:.2px;
+    }
+    .updatePill{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.78);
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:900;
+      backdrop-filter: blur(10px);
+    }
+    .quickText{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:2.05;
+      font-size:15px;
+      font-weight:650;
+      max-width: 90ch;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){
+      .kpis{grid-template-columns:1fr}
+    }
+    .kpi{
+      padding:12px;
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      background: rgba(255,255,255,.03);
+    }
+    .kpi b{display:block; font-size:18px; font-weight:1000}
+    .kpi span{color: rgba(255,255,255,.58); font-size:13px; font-weight:800}
+
+    .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .badge{
+      font-size:12px; padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.85);
+      font-weight:900;
+    }
+
+    .expGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .expGrid{grid-template-columns:1fr}
+    }
+
+    .expCard{
+      padding:18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+      transition: .22s ease;
+      min-height: 190px;
+    }
+    .expCard:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 24px 70px rgba(0,0,0,.50);
+    }
+    .expCard::after{
+      content:"";
+      position:absolute;
+      inset:-60px -60px auto auto;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      filter: blur(30px);
+      opacity:.35;
+      pointer-events:none;
+    }
+
+    .expTitle{
+      margin:0 0 6px;
+      font-size:18px;
+      font-weight:1000;
+      color: rgba(255,255,255,.95);
+      line-height:1.4;
+    }
+    .expMeta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+      color: rgba(255,255,255,.70);
+      font-weight:900;
+      font-size:13px;
+    }
+    .expText{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:2.0;
+      font-size:14px;
+      font-weight:650;
+    }
+
+    .c1{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(0,209,255,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(47,134,255,.14), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .c1::after{ background: rgba(0,209,255,.85); }
+
+    .c2{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(255,179,0,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(255,106,0,.12), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .c2::after{ background: rgba(255,160,20,.85); }
+
+    .c3{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(124,92,255,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .c3::after{ background: rgba(124,92,255,.85); }
+
+    .c4{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(41,209,125,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .c4::after{ background: rgba(41,209,125,.85); }
+
+    /* المهارات الأساسية */
+    .skillsGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .skillsGrid{grid-template-columns:1fr}
+    }
+
+    .skillCard{
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+      transition:.22s ease;
+      min-height:170px;
+    }
+    .skillCard:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 24px 70px rgba(0,0,0,.50);
+    }
+    .skillCard::after{
+      content:"";
+      position:absolute;
+      inset:-60px -60px auto auto;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      filter: blur(30px);
+      opacity:.32;
+      pointer-events:none;
+    }
+
+    .skillTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .skillName{
+      margin:0;
+      font-size:16px;
+      font-weight:1000;
+      color:rgba(255,255,255,.95);
+    }
+    .skillLevel{
+      color: rgba(255,255,255,.72);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .skillBarWrap{
+      width:100%;
+      height:12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      margin-bottom:14px;
+    }
+    .skillBar{
+      height:100%;
+      border-radius:999px;
+      background: linear-gradient(90deg, #7c5cff, #22d3ee);
+      box-shadow: 0 0 18px rgba(71, 168, 255, .22);
+    }
+    .skillText{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:2;
+      font-size:14px;
+      font-weight:650;
+    }
+
+    .s1{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(0,209,255,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(47,134,255,.12), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s1::after{ background: rgba(0,209,255,.85); }
+
+    .s2{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(124,92,255,.16), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s2::after{ background: rgba(124,92,255,.85); }
+
+    .s3{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(255,179,0,.12), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(124,92,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s3::after{ background: rgba(255,179,0,.75); }
+
+    .s4{
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(41,209,125,.12), transparent 60%),
+        radial-gradient(600px 260px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+    }
+    .s4::after{ background: rgba(41,209,125,.75); }
+
+    .projects{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 900px){
+      .projects{grid-template-columns:1fr}
+    }
+    .siteCard{
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(700px 240px at 10% 0%, rgba(255,180,30,.12), transparent 60%),
+        radial-gradient(700px 240px at 90% 100%, rgba(0,209,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+      transition: .22s ease;
+      padding:14px;
+      border-radius:16px;
+    }
+    .siteCard:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 22px 60px rgba(0,0,0,.48);
+      border-color: rgba(255,180,30,.26);
+    }
+    .projTop{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-bottom:8px;
+      flex-wrap:wrap;
+    }
+    .siteOpen{
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:1000;
+      color:#1a0f00;
+      border:1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,179,0,.95), rgba(255,106,0,.65));
+      box-shadow: 0 10px 28px rgba(255,140,0,.18);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .siteOpen:hover{
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    footer{
+      margin-top:16px;
+      color: rgba(255,255,255,.55);
+      font-size:13px;
+      text-align:center;
+      line-height:1.8;
+      font-weight:700;
+    }
+    .ownerNote{
+      margin-top:8px;
+      color: rgba(255,255,255,.70);
+      font-weight:700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="dot"></div>
+        <h1>السيرة الذاتية — محمد محمد عبدالغني</h1>
+      </div>
+      <div class="pill">
+        <span>متاح للعمل داخل السعودية</span>
+        <span class="goodDot"></span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <aside class="card left">
+        <a class="avatar" href="https://b.top4top.io/p_37154ic9c1.png" target="_blank" rel="noopener">
+          <img src="https://b.top4top.io/p_37154ic9c1.png" alt="صورة محمد" />
+        </a>
+
+        <div class="name">محمد محمد عبدالغني</div>
+        <p class="role">
+          مصمم جرافيك + مونتير فيديوهات إعلانية + تطوير صفحات HTML/WordPress<br/>
+          خبرة منذ <b>2016</b> (10 سنوات) — خبرة داخل السعودية: <b>4 سنوات</b><br/>
+          تنفيذ كامل من الفكرة للتسليم النهائي: تصميم — مونتاج — تجهيز محتوى — إخراج بصري للمتجر والسوشيال.
+        </p>
+
+        <div class="meta">
+          <div class="tag">Branding</div>
+          <div class="tag">Ads & Reels</div>
+          <div class="tag">E-commerce</div>
+          <div class="tag">WordPress</div>
+          <div class="tag">HTML/CSS</div>
+          <div class="tag">Product Photography</div>
+        </div>
+
+        <div class="cta">
+          <a class="btn" href="mailto:mm01115212442@gmail.com">راسلني على البريد</a>
+
+          <a class="btn behance" href="https://www.behance.net/mohamedelkhate13" target="_blank" rel="noopener">
+            <span class="wrapTxt">
+              <span>ملف أعمالي (Behance)</span>
+              <span class="small">نماذج حقيقية من التصميمات والمشاريع اللي نفذتها</span>
+            </span>
+          </a>
+
+          <a class="btn" href="https://wa.me/966582823381" target="_blank" rel="noopener">واتساب (سعودي) 0582823381</a>
+          <a class="btn" href="https://wa.me/201118063313" target="_blank" rel="noopener">واتساب (مصري) +201118063313</a>
+        </div>
+
+        <div class="links">
+          <div class="linkRow">
+            <b>تاريخ الميلاد</b>
+            <span>1994 / 10 / 01</span>
+          </div>
+
+          <div class="linkRow">
+            <b>CV ورقي (عربي)</b>
+            <a href="https://d.top4top.io/p_3715rb3b31.png" target="_blank" rel="noopener"><span>فتح</span></a>
+          </div>
+
+          <div class="linkRow">
+            <b>CV ورقي (English)</b>
+            <a href="https://e.top4top.io/p_3715pnb3p1.png" target="_blank" rel="noopener"><span>فتح</span></a>
+          </div>
+
+          <div class="linkRow">
+            <b>إيميل</b>
+            <span style="direction:ltr">mm01115212442@gmail.com</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="card right">
+
+        <section class="section">
+          <div class="quickHeader">
+            <h3 class="quickTitle">نبذة سريعة</h3>
+            <div class="updatePill">آخر تحديث: <b style="color:rgba(255,255,255,.92)">مارس 2026</b></div>
+          </div>
+
+          <p class="quickText">
+            بدأت عملي في التصميم من سنة <b>2016</b>، واشتغلت على مجالات مختلفة: بصريات، متاجر إلكترونية، ألعاب وبطاقات رقمية،
+            ومواد تسويق منتجات وخدمات داخل السعودية. أنا مسؤول عن التنفيذ الكامل في أغلب الأعمال: <b>من الفكرة → التصميم → المونتاج → تجهيز المحتوى → إخراج نسخة نهائية جاهزة للنشر</b>.
+            ده بيخلّيني أضيف قيمة بسرعة لأي فريق عمل لأنّي “بنفّذ” بتركيز وجودة، مش مجرد تصميم وخلاص.
+          </p>
+
+          <div class="kpis">
+            <div class="kpi"><b>2016</b><span>بداية الخبرة</span></div>
+            <div class="kpi"><b>10</b><span>سنوات خبرة</span></div>
+            <div class="kpi"><b>4</b><span>سنوات داخل السعودية</span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>الخبرات العملية</h2>
+
+          <div class="expGrid">
+            <div class="expCard c2">
+              <h4 class="expTitle">شركة بن مروت للمواد الغذائية — مكة</h4>
+              <div class="expMeta">
+                <span>السعودية</span>
+                <span>—</span>
+                <span>تصميمات تسويقية وإعلانات رقمية</span>
+              </div>
+              <p class="expText">
+                تنفيذ تصميمات وإعلانات للسوشيال، وإخراج بصري متناسق يخدم العلامة ويوصل الرسالة بسرعة.
+                التعامل مع تسليمات منتظمة تحت ضغط وقت مع الحفاظ على جودة ثابتة.
+              </p>
+              <div class="badges">
+                <span class="badge">Fast Delivery</span>
+                <span class="badge">Daily Content</span>
+                <span class="badge">Social Ads</span>
+              </div>
+            </div>
+
+            <div class="expCard c1">
+              <h4 class="expTitle">عبادي استوري — متجر ألعاب وبطاقات رقمية</h4>
+              <div class="expMeta">
+                <span>سنة</span>
+                <span>—</span>
+                <span>بنرات وعروض وتجهيز محتوى</span>
+              </div>
+              <p class="expText">
+                تصميم بنرات وعروض وتجهيز محتوى منتجات بشكل يناسب جمهور الألعاب،
+                مع فهم عملي لطريقة عرض المنتج والخصومات بشكل واضح ومقنع.
+              </p>
+              <div class="badges">
+                <span class="badge">E-commerce</span>
+                <span class="badge">Offers</span>
+                <span class="badge">Gaming</span>
+              </div>
+            </div>
+
+            <div class="expCard c3">
+              <h4 class="expTitle">تطوير مواقع وصفحات — WordPress + HTML/CSS</h4>
+              <div class="expMeta">
+                <span>خبرة عملية</span>
+                <span>—</span>
+                <span>بناء صفحات وتخصيص واجهات</span>
+              </div>
+              <p class="expText">
+                بناء صفحات HTML/CSS والعمل على مواقع WordPress وتجهيز محتوى المتاجر.
+                خبرة في تخصيص الواجهة وتنظيم المحتوى بطريقة تساعد العميل يشتري بسهولة.
+              </p>
+              <div class="badges">
+                <span class="badge">UI Content</span>
+                <span class="badge">HTML/CSS</span>
+                <span class="badge">WordPress</span>
+              </div>
+            </div>
+
+            <div class="expCard c4">
+              <h4 class="expTitle">ZIAR للبصريات — تصميم + مونتاج + محتوى منتجات</h4>
+              <div class="expMeta">
+                <span>سنة</span>
+                <span>—</span>
+                <span>إعلانات + صور منتجات + سوشيال</span>
+              </div>
+              <p class="expText">
+                تصميم إعلانات لعدسات ونظارات وتجهيز صور منتجات للمتجر،
+                وإخراج مواد سوشيال يومية. خبرة قوية في فهم المنتج وتحويله لإعلان واضح ومقنع بدون تعقيد.
+              </p>
+              <div class="badges">
+                <span class="badge">Reels</span>
+                <span class="badge">Product Content</span>
+                <span class="badge">Optics</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>المهارات الأساسية</h2>
+
+          <div class="skillsGrid">
+            <div class="skillCard s1">
+              <div class="skillTop">
+                <h4 class="skillName">Photoshop</h4>
+                <div class="skillLevel">متقدم</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:92%"></div>
+              </div>
+              <p class="skillText">
+                تحسين صور منتجات، دمج واقعي، موكاب، تجهيز مواد إعلانية.
+              </p>
+            </div>
+
+            <div class="skillCard s2">
+              <div class="skillTop">
+                <h4 class="skillName">Premiere Pro</h4>
+                <div class="skillLevel">متقدم</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:88%"></div>
+              </div>
+              <p class="skillText">
+                مونتاج إعلانات وريلز، إيقاع سريع، تسليم سوشيال.
+              </p>
+            </div>
+
+            <div class="skillCard s3">
+              <div class="skillTop">
+                <h4 class="skillName">WordPress + HTML/CSS</h4>
+                <div class="skillLevel">جيد جدًا</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:82%"></div>
+              </div>
+              <p class="skillText">
+                بناء صفحات ومواقع، تخصيص قوالب، تطوير واجهات بسيطة وعملية.
+              </p>
+            </div>
+
+            <div class="skillCard s4">
+              <div class="skillTop">
+                <h4 class="skillName">After Effects</h4>
+                <div class="skillLevel">جيد جدًا</div>
+              </div>
+              <div class="skillBarWrap">
+                <div class="skillBar" style="width:80%"></div>
+              </div>
+              <p class="skillText">
+                موشن نظيف، تايبوجرافي، انتقالات احترافية.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>تصوير المنتجات — الجهاز والسيستم ونتائج الشغل</h2>
+          <p class="quickText" style="max-width:none; margin-bottom:12px">
+            خبرة عملية في تصوير المنتجات خصوصًا النظارات باستخدام إعدادات وإضاءة ثابتة ثم تطوير الصورة على الفوتوشوب لتخرج بجودة متجر عالمي.
+          </p>
+
+          <div class="expCard c1" style="min-height:auto">
+            <div class="badges" style="margin-top:0">
+              <a class="btn danger" style="display:inline-flex" href="https://www.youtube.com/watch?v=9ZG8Rs8fBe8" target="_blank" rel="noopener">
+                فيديو جهاز التصوير
+              </a>
+              <a class="btn" style="display:inline-flex" href="https://b.top4top.io/p_3716obwgb1.png" target="_blank" rel="noopener">
+                صورة السيستم 1
+              </a>
+              <a class="btn" style="display:inline-flex" href="https://h.top4top.io/p_3716g4gt51.png" target="_blank" rel="noopener">
+                صورة السيستم 2
+              </a>
+              <a class="btn" style="display:inline-flex" href="https://f.top4top.io/p_37166ncj31.jpg" target="_blank" rel="noopener">
+                المنتج بعد التصوير والتعديل
+              </a>
+              <a class="btn" style="display:inline-flex" href="https://i.top4top.io/p_3716ptcce1.jpg" target="_blank" rel="noopener">
+                المنتج زاوية أخرى
+              </a>
+            </div>
+
+            <p class="expText" style="margin-top:12px">
+              متمرس في كاميرات <b>Canon</b> وضبط الإضاءة والانعكاسات وتجهيز صورة منتج نظيفة وواضحة لأن الصورة القوية بتختصر الكلام وبتساعد العميل يقرر بسرعة.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>فيديوهات مصنوعة بالذكاء الاصطناعي</h2>
+          <p class="quickText" style="max-width:none; margin-bottom:12px">دي عينة من الفيديوهات من مكتبة فيديوهات كثيرة.</p>
+
+          <div class="expCard c3" style="min-height:auto">
+            <div class="badges" style="margin-top:0">
+              <a class="btn" style="display:inline-flex" href="https://c.top4top.io/m_3716odn1t1.mp4" target="_blank" rel="noopener">فيديو 1</a>
+              <a class="btn" style="display:inline-flex" href="https://d.top4top.io/m_3716l96wz1.mp4" target="_blank" rel="noopener">فيديو 2</a>
+              <a class="btn" style="display:inline-flex" href="https://drive.google.com/file/d/10cLj02J-ocQbxlSVt2nbzrEJNjojfMyO/view?usp=sharing" target="_blank" rel="noopener">فيديو 3</a>
+              <a class="btn" style="display:inline-flex" href="https://drive.google.com/file/d/1dlcTlWTmRXODA0dC5GaX6oBbS7kPYD-M/view?t=6" target="_blank" rel="noopener">فيديو 4</a>
+              <a class="btn" style="display:inline-flex" href="https://j.top4top.io/m_37167xnbm1.mp4" target="_blank" rel="noopener">فيديو 5</a>
+              <a class="btn" style="display:inline-flex" href="https://c.top4top.io/m_3716qu7941.mp4" target="_blank" rel="noopener">فيديو 7</a>
+              <a class="btn" style="display:inline-flex" href="https://c.top4top.io/m_3716m40en1.mp4" target="_blank" rel="noopener">فيديو 8</a>
+              <a class="btn" style="display:inline-flex" href="https://a.top4top.io/m_3716uz4lo1.mp4" target="_blank" rel="noopener">فيديو 9</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>المواقع التي عملت عليها (روابط مباشرة)</h2>
+          <p class="quickText" style="max-width:none; margin-bottom:12px">
+            نماذج لمواقع ومتاجر اشتغلت عليها أو ساهمت في تطوير المحتوى والواجهة والتجهيز البصري.
+          </p>
+
+          <div class="projects">
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">ZIAR للنظارات</h4>
+                <a class="siteOpen" href="https://ziar.sa/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Optics</span><span class="badge">E-commerce</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">LINAS عدسات ليناس</h4>
+                <a class="siteOpen" href="https://linas.sa/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Lenses</span><span class="badge">Content</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">Aliya للبصريات</h4>
+                <a class="siteOpen" href="https://aliya.sa/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Optical</span><span class="badge">Store</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">Optique للبصريات</h4>
+                <a class="siteOpen" href="https://optique.sa/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Optics</span><span class="badge">UI</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">حلول سهلة للسيارات</h4>
+                <a class="siteOpen" href="https://holol-sahla.com/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Automotive</span><span class="badge">Marketing</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">عود البركة</h4>
+                <a class="siteOpen" href="https://oudalbarakah.com/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">E-commerce</span><span class="badge">Products</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">عبادي استوري</h4>
+                <a class="siteOpen" href="https://abadystore.com/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Gaming</span><span class="badge">Store</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">فهد العروبة</h4>
+                <a class="siteOpen" href="https://fhd-alarwbh.com/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Cards</span><span class="badge">Digital</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">الفهد</h4>
+                <a class="siteOpen" href="https://al-fahdd.com/" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">Gaming</span><span class="badge">E-commerce</span></div>
+            </div>
+
+            <div class="siteCard">
+              <div class="projTop">
+                <h4 style="margin:0; font-weight:1000">ملاهي Youpi</h4>
+                <a class="siteOpen" href="https://www.youpiiii.com/#" target="_blank" rel="noopener">فتح الموقع</a>
+              </div>
+              <div class="badges"><span class="badge">2016</span><span class="badge">Website</span></div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          © <span id="y"></span> — محمد محمد عبدالغني
+          <div class="ownerNote">صفحة السيرة الذاتية دي مبرمجة ومصممة بيدي HTML CSS كعرض عملي لطريقة شغلي.</div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
